@@ -18,8 +18,9 @@
 
 // console.log("Learning redux");
 
-// level 1
-import { legacy_createStore as createStore } from "redux";
+// level 2 - npm i redux-logger --save-dev
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import logger from "redux-logger"; //appollo, thung, saga
 
 const reducer = function (state, action) {
   if (action.type === "INC") {
@@ -30,10 +31,12 @@ const reducer = function (state, action) {
     return state * action.payload;
   } else {
     return state;
-  } 
+  }
 };
 
-const store = createStore(reducer, 1);
+const middleware = applyMiddleware(logger);
+
+const store = createStore(reducer, 1, middleware);
 
 store.subscribe(() => {
   console.log(`Store changed - ${store.getState()}`); //165
