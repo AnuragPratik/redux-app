@@ -6,7 +6,7 @@ import "./BankApp.css";
 function BankApp() {
   return (
     <div>
-      <h1 className="bg-danger text-warning">Murthy's Corporate Bank</h1>
+      <h1 className="bg-danger text-warning">Awesome Bank</h1>
       <HomePage />
       <Deposits />
       <Withdraws />
