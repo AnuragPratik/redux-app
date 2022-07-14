@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Calculator from "./containers/Calculator";
 import Clock from "./containers/Clock";
+import BankApp from "./bank/components/BankApp";
 
 function App() {
   return (
@@ -20,13 +21,14 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <center>
+      {/* <center>
         <h1>Awesome Calculator</h1>
         <Calculator />
         <br />
         <br />
         <Clock />
-      </center>
+      </center> */}
+      <BankApp />
     </div>
   );
 }
