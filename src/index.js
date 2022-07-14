@@ -1,20 +1,21 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import './index.css';
-// import App from './App';
-// import reportWebVitals from './reportWebVitals';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-// // If you want to start measuring performance in your app, pass a function
-// // to log results (for example: reportWebVitals(console.log))
-// // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
 
 // console.log("Learning redux");
 
@@ -84,51 +85,51 @@
 // store.dispatch({ type: "CHANGE_NAME", payload: "Brock" });
 
 // level 4 - axios, redux-thunk, npm i axios redux-thunk
-import { applyMiddleware, legacy_createStore as createStore } from "redux";
-import logger from "redux-logger";
-import { composeWithDevTools } from "redux-devtools-extension";
-import axios from "axios";
-import thunk from "redux-thunk";
+// import { applyMiddleware, legacy_createStore as createStore } from "redux";
+// import logger from "redux-logger";
+// import { composeWithDevTools } from "redux-devtools-extension";
+// import axios from "axios";
+// import thunk from "redux-thunk";
 
-// store state
-const initialState = {
-  fetching: false,
-  fetched: false,
-  users: [],
-  error: null,
-};
+// // store state
+// const initialState = {
+//   fetching: false,
+//   fetched: false,
+//   users: [],
+//   error: null,
+// };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "FETCH_USERS_START":
-      return { ...state, fetching: true };
-    case "RECEIVED_USERS":
-      return {
-        ...state,
-        fetching: false,
-        fetched: true,
-        users: action.payload,
-      };
-    case "FETCH_USERS_ERROR":
-      return { ...state, fetching: false, error: action.payload };
-    default:
-      return state;
-  }
-};
+// const reducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case "FETCH_USERS_START":
+//       return { ...state, fetching: true };
+//     case "RECEIVED_USERS":
+//       return {
+//         ...state,
+//         fetching: false,
+//         fetched: true,
+//         users: action.payload,
+//       };
+//     case "FETCH_USERS_ERROR":
+//       return { ...state, fetching: false, error: action.payload };
+//     default:
+//       return state;
+//   }
+// };
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(thunk, logger))
-);
+// const store = createStore(
+//   reducer,
+//   composeWithDevTools(applyMiddleware(thunk, logger))
+// );
 
-store.dispatch((dispatch) => {
-  dispatch({ type: "FETCH_USERS_START" });
-  axios
-    .get("https://jsonplaceholder.typicode.com/users")
-    .then((response) => {
-      dispatch({ type: "RECEIVED_USERS", payload: response.data });
-    })
-    .catch((error) => {
-      dispatch({ type: "FETCH_USERS_ERROR", payload: error });
-    });
-});
+// store.dispatch((dispatch) => {
+//   dispatch({ type: "FETCH_USERS_START" });
+//   axios
+//     .get("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => {
+//       dispatch({ type: "RECEIVED_USERS", payload: response.data });
+//     })
+//     .catch((error) => {
+//       dispatch({ type: "FETCH_USERS_ERROR", payload: error });
+//     });
+// });
