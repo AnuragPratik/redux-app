@@ -49,36 +49,86 @@
 // store.dispatch({ type: "DIV", payload: 2 });
 
 // level 3 - combine reducers, dev tools - npm i redux-devtools-extension --save-dev
-import {
-  applyMiddleware,
-  combineReducers,
-  legacy_createStore as createStore,
-} from "redux";
+// import {
+//   applyMiddleware,
+//   combineReducers,
+//   legacy_createStore as createStore,
+// } from "redux";
+// import logger from "redux-logger";
+// import { composeWithDevTools } from "redux-devtools-extension";
+
+// const userReducer = (state = {}, action) => {
+//   switch (action.type) {
+//     case "CHANGE_NAME":
+//       return (state = { ...state, name: action.payload }); //{user:{name:"Adam"}}
+//     case "CHANGE_AGE":
+//       return (state = { ...state, age: action.payload }); //{user:{name:"Adam", age:50}}
+//     default:
+//       return state;
+//   }
+// };
+// const tweetsReducer = (state = [], action) => {
+//   return state;
+// };
+// const allReducers = combineReducers({
+//   user: userReducer,
+//   tweets: tweetsReducer,
+// });
+// const store = createStore(
+//   allReducers,
+//   composeWithDevTools(applyMiddleware(logger))
+// );
+
+// store.dispatch({ type: "CHANGE_NAME", payload: "Adam" });
+// store.dispatch({ type: "CHANGE_AGE", payload: 50 });
+// store.dispatch({ type: "CHANGE_NAME", payload: "Brock" });
+
+// level 4 - axios, redux-thunk, npm i axios redux-thunk
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
+import axios from "axios";
+import thunk from "redux-thunk";
 
-const userReducer = (state = {}, action) => {
+// store state
+const initialState = {
+  fetching: false,
+  fetched: false,
+  users: [],
+  error: null,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHANGE_NAME":
-      return (state = { ...state, name: action.payload }); //{user:{name:"Adam"}}
-    case "CHANGE_AGE":
-      return (state = { ...state, age: action.payload }); //{user:{name:"Adam", age:50}}
+    case "FETCH_USERS_START":
+      return { ...state, fetching: true };
+    case "RECEIVED_USERS":
+      return {
+        ...state,
+        fetching: false,
+        fetched: true,
+        users: action.payload,
+      };
+    case "FETCH_USERS_ERROR":
+      return { ...state, fetching: false, error: action.payload };
     default:
       return state;
   }
 };
-const tweetsReducer = (state = [], action) => {
-  return state;
-};
-const allReducers = combineReducers({
-  user: userReducer,
-  tweets: tweetsReducer,
-});
+
 const store = createStore(
-  allReducers,
-  composeWithDevTools(applyMiddleware(logger))
+  reducer,
+  composeWithDevTools(applyMiddleware(thunk, logger))
 );
 
-store.dispatch({ type: "CHANGE_NAME", payload: "Adam" });
-store.dispatch({ type: "CHANGE_AGE", payload: 50 });
-store.dispatch({ type: "CHANGE_NAME", payload: "Brock" });
+store.dispatch((dispatch) => {
+  dispatch({ type: "FETCH_USERS_START" });
+  axios
+    .get("https://jsonplaceholder.typicode.com/users")
+    .then((response) => {
+      dispatch({ type: "RECEIVED_USERS", payload: response.data });
+    })
+    .catch((error) => {
+      dispatch({ type: "FETCH_USERS_ERROR", payload: error });
+    });
+});
