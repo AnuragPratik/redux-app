@@ -31,8 +31,8 @@ class Calculator extends Component {
         <div>
           <button
             onClick={() => {
-              intA = parseInt(this.input1.current.value);
-              intB = parseInt(this.input2.current.value);
+              intA = parseInt(this.input1.current.value) || 0;
+              intB = parseInt(this.input2.current.value) || 0;
               this.props.dispatch(addInputs(intA, intB));
             }}
           >
@@ -40,8 +40,8 @@ class Calculator extends Component {
           </button>
           <button
             onClick={() => {
-              intA = parseInt(this.input1.current.value);
-              intB = parseInt(this.input2.current.value);
+              intA = parseInt(this.input1.current.value) || 0;
+              intB = parseInt(this.input2.current.value) || 0;
               this.props.dispatch(subtractInputs(intA, intB));
             }}
           >
