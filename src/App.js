@@ -3,6 +3,7 @@ import "./App.css";
 // import Calculator from "./containers/Calculator";
 // import Clock from "./containers/Clock";
 // import BankApp from "./bank/components/BankApp";
+import DataGrid from "./griddemo/DataGrid";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
         <Clock />
       </center> */}
       {/* <BankApp /> */}
-      <h3 className="bg-success text-white">Component goes here..</h3>
+      {/* <h3 className="bg-success text-white">Component goes here..</h3> */}
+      <DataGrid />
     </div>
   );
 }
