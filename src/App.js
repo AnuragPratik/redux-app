@@ -1,5 +1,6 @@
 // import logo from "./logo.svg";
 import "./App.css";
+import FormApp from "./validation/FormApp";
 // import Consumer1 from "./rxjsdemos/Consumer1";
 // import Consumer2 from "./rxjsdemos/Consumer2";
 // import Calculator from "./containers/Calculator";
@@ -34,7 +35,7 @@ function App() {
         <Clock />
       </center> */}
       {/* <BankApp /> */}
-      <h3 className="bg-success text-white">Component goes here..</h3>
+      {/* <h3 className="bg-success text-white">Component goes here..</h3> */}
       {/* <DataGrid /> */}
       {/* <Demo /> */}
       {/* <RxApp />
@@ -42,6 +43,7 @@ function App() {
       <Consumer1 />
       <br />
       <Consumer2 /> */}
+      <FormApp />
     </div>
   );
 }

@@ -73,7 +73,7 @@ let SignInForm = (props) => {
               component="input"
               type="radio"
               value="female"
-            />{" "}
+            />
             Female
           </label>
         </div>
@@ -167,10 +167,8 @@ class FormApp extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React and redux-form</h1>
-        </header>
+      <div>
+        <h1 className="App-title">Welcome to React and redux-form</h1>
         <div className="container">
           <p className="App-intro">Contact Form</p>
           <SignInForm onSubmit={this.handleSignIn} />
