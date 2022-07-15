@@ -28,7 +28,14 @@ const DataGrid = () => {
       filter: true,
     },
   ];
-
+  const rowStyle = { background: "orange" };
+  const getRowStyle = (params) => {
+    if (params.node.rowIndex % 2 == 0) {
+      return { background: "orange" };
+    } else {
+      return { background: "green" };
+    }
+  };
   const handleClick = () => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((resp) => resp.json())
@@ -38,7 +45,12 @@ const DataGrid = () => {
   return (
     <div className="ag-theme-alpine" style={{ height: 500, width: 650 }}>
       <button onClick={handleClick}>Show Users</button>
-      <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs}
+        // rowStyle={rowStyle}
+        getRowStyle={getRowStyle}
+      ></AgGridReact>
     </div>
   );
 };
