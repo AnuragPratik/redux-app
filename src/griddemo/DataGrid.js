@@ -28,9 +28,9 @@ const DataGrid = () => {
       filter: true,
     },
   ];
-  const rowStyle = { background: "orange" };
+  // const rowStyle = { background: "orange" };
   const getRowStyle = (params) => {
-    if (params.node.rowIndex % 2 == 0) {
+    if (params.node.rowIndex % 2 === 0) {
       return { background: "orange" };
     } else {
       return { background: "green" };
