@@ -2,20 +2,37 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+// npm i redux-saga
+import createSagaMiddleware from "redux-saga";
+import logger from "redux-logger";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { watchAgeUp } from "./sagas-app/sagas/saga";
+import reducer from "./sagas-app/store/reducer";
+import SagaApp from "./sagas-app/SagaApp";
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(logger, sagaMiddleware))
+);
+sagaMiddleware.run(watchAgeUp);
+
 // import { store } from "./store/configStore";
 // import { store } from "./bank/store/configStore.dev";
 
 // npm i react-redux
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <Provider store={store}>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  // </Provider>
+  <Provider store={store}>
+    <React.StrictMode>
+      {/* <App /> */}
+      <SagaApp />
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
