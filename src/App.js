@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
-import Calculator from "./containers/Calculator";
-import Clock from "./containers/Clock";
-import BankApp from "./bank/components/BankApp";
+// import Calculator from "./containers/Calculator";
+// import Clock from "./containers/Clock";
+// import BankApp from "./bank/components/BankApp";
 
 function App() {
   return (
