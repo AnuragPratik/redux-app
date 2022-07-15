@@ -28,7 +28,8 @@ function App() {
         <br />
         <Clock />
       </center> */}
-      <BankApp />
+      {/* <BankApp /> */}
+      <h3 className="bg-success text-white">Component goes here..</h3>
     </div>
   );
 }
