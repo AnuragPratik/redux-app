@@ -2,9 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
+import FormApp from "./validation/FormApp";
+import { combineReducers, legacy_createStore as createStore } from "redux";
+import { reducer as formReducer } from "redux-form";
 import reportWebVitals from "./reportWebVitals";
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 // import { applyMiddleware, legacy_createStore as createStore } from "redux";
 // npm i redux-saga
 // import createSagaMiddleware from "redux-saga";
@@ -24,15 +27,20 @@ import reportWebVitals from "./reportWebVitals";
 // import { store } from "./store/configStore";
 // import { store } from "./bank/store/configStore.dev";
 
+const rotReducer = combineReducers({
+  form: formReducer,
+});
+const store = createStore(rotReducer);
+
 // npm i react-redux
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <Provider store={store}>
-  <React.StrictMode>
-    <App />
-    {/* <SagaApp /> */}
-  </React.StrictMode>
-  // </Provider>
+  <Provider store={store}>
+    <React.StrictMode>
+      <FormApp />
+      {/* <SagaApp /> */}
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

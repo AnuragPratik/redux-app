@@ -8,7 +8,6 @@ import "./App.css";
 // import DataGrid from "./griddemo/DataGrid";
 // import { Demo } from "./rxjsdemos/Demo";
 // import RxApp from "./rxjsdemos/RxApp";
-import FormApp from "./validation/FormApp";
 
 function App() {
   return (
@@ -35,7 +34,7 @@ function App() {
         <Clock />
       </center> */}
       {/* <BankApp /> */}
-      {/* <h3 className="bg-success text-white">Component goes here..</h3> */}
+      <h3 className="bg-success text-white">Component goes here..</h3>
       {/* <DataGrid /> */}
       {/* <Demo /> */}
       {/* <RxApp />
@@ -43,7 +42,6 @@ function App() {
       <Consumer1 />
       <br />
       <Consumer2 /> */}
-      <FormApp />
     </div>
   );
 }

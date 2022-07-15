@@ -158,7 +158,7 @@ SignInForm = reduxForm({
   validate,
 })(SignInForm);
 
-class App extends Component {
+class FormApp extends Component {
   handleSignIn = (values) => {
     console.log(values); // JSON object
     // this.props.dispatch('register',{type:'REGISTER',payload:values})
@@ -180,4 +180,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default FormApp;
